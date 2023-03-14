@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GUI_mobile4.NewPatient">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="labelT" Text="Id Pacjenta: "
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" />
+            <Entry x:Name="id"/>
+            <Button x:Name="button" Text="Zatwierdź"  ></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

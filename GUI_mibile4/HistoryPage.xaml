@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"  
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"  
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"               
+             xmlns:conv="clr-namespace:GUI_mobile4;assembly=GUI_mobile4"
+             xmlns:dg="clr-namespace:Xamarin.Forms.DataGrid;assembly=Xamarin.Forms.DataGrid"  
+             x:Class="GUI_mobile4.HistoryPage">
+
+    <ContentView >
+        <!-- Place new controls here -->
+        <dg:DataGrid  x:Name="dgX" ItemsSource="{Binding HistoryList}" SelectionEnabled="True" SelectedItem="{Binding SelectedRecord}" RowHeight="70" HeaderHeight="50"   FontSize="17"
+                    BorderColor="#CCCCCC" PullToRefreshCommand="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}"  HeaderBackground="#E0E6F8" ActiveRowColor="#8899AA">
+            
+<!--            <x:Arguments>
+                <ListViewCachingStrategy>RetainElement</ListViewCachingStrategy>
+            </x:Arguments>  -->            
+<!--            <dg:DataGrid.FontSize>
+                <OnIdiom x:TypeArguments="x:Double">
+                    <OnIdiom.Tablet>25</OnIdiom.Tablet>
+                    <OnIdiom.Phone>15</OnIdiom.Phone>
+                </OnIdiom>
+            </dg:DataGrid.FontSize> -->
+
+            <dg:DataGrid.Columns>
+                <dg:DataGridColumn Title="ID" PropertyName="Id" Width="1*" >
+                    <dg:DataGridColumn.FormattedTitle>
+                        <FormattedString>
+                            <Span Text="Id" FontSize="{Binding FontSize}" FontAttributes="Bold"/>
+                        </FormattedString>
+                    </dg:DataGridColumn.FormattedTitle>
+                </dg:DataGridColumn>
+                                   
+                    
+                <dg:DataGridColumn Title="Time" PropertyName="Time" Width="2*">
+                <dg:DataGridColumn.FormattedTitle>
+                    <FormattedString>
+                        <Span Text="Time" FontSize="{Binding FontSize}" FontAttributes="Bold"/>
+                    </FormattedString>
+                </dg:DataGridColumn.FormattedTitle>
+                </dg:DataGridColumn>
+                <dg:DataGridColumn Title="Ti/Te" PropertyName="TiTe" Width="1*" >
+                    <dg:DataGridColumn.FormattedTitle>
+                        <FormattedString>
+                            <Span Text="Ti/Te" FontSize="{Binding FontSize}" FontAttributes="Bold"/>
+                        </FormattedString>
+                    </dg:DataGridColumn.FormattedTitle>
+                    <dg:DataGridColumn.CellTemplate>
+                        <DataTemplate>
+                            <ContentView HorizontalOptions="Fill" VerticalOptions="Fill"
+						 BackgroundColor="{Binding Converter={StaticResource Converters}}">
+                                <Label Text="{Binding}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="17"/>
+                            </ContentView>
+                        </DataTemplate>
+                    </dg:DataGridColumn.CellTemplate>
+                </dg:DataGridColumn>
+
+                <dg:DataGridColumn Title="Ti" PropertyName="Ti" Width="1*">
+                    <dg:DataGridColumn.FormattedTitle>
+                        <FormattedString>
+                            <Span Text="Ti" FontSize="{Binding FontSize}" FontAttributes="Bold"/>
+                        </FormattedString>
+                    </dg:DataGridColumn.FormattedTitle>
+
+                    <dg:DataGridColumn.CellTemplate>
+                        <DataTemplate>
+                            <ContentView HorizontalOptions="Fill" VerticalOptions="Fill"
+						 BackgroundColor="{Binding Converter={StaticResource Converters}}">
+                                <Label Text="{Binding}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="17"/>
+                            </ContentView>
+                        </DataTemplate>
+                    </dg:DataGridColumn.CellTemplate> 
+                </dg:DataGridColumn>
+
+                <dg:DataGridColumn Title="RR" PropertyName="RR" Width="1*">
+                    <dg:DataGridColumn.FormattedTitle>
+                        <FormattedString>
+                            <Span Text="RR" FontSize="{Binding FontSize}" FontAttributes="Bold" />
+                        </FormattedString>
+                    </dg:DataGridColumn.FormattedTitle>
+
+                    <dg:DataGridColumn.CellTemplate>
+                        <DataTemplate>
+                            <ContentView HorizontalOptions="Fill" VerticalOptions="Fill"
+						 BackgroundColor="{Binding Converter={StaticResource Converters}}">
+                                <Label Text="{Binding}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="17"/>
+                            </ContentView>
+                        </DataTemplate>
+                    </dg:DataGridColumn.CellTemplate> 
+                </dg:DataGridColumn>
+
+                <dg:DataGridColumn Title="PEEP" PropertyName="PEEP" Width="1*">
+                    <dg:DataGridColumn.FormattedTitle>
+                        <FormattedString>
+                            <Span Text="PEEP" FontSize="{Binding FontSize}" FontAttributes="Bold"/>
+                        </FormattedString>
+                    </dg:DataGridColumn.FormattedTitle>
+
+                    <dg:DataGridColumn.CellTemplate>
+                        <DataTemplate>
+                        <ContentView HorizontalOptions="Fill" VerticalOptions="Fill"
+						 BackgroundColor="{Binding Converter={StaticResource Converters}}">
+                                <Label Text="{Binding}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="17"/>
+                        </ContentView>
+                    </DataTemplate>
+                </dg:DataGridColumn.CellTemplate> 
+                </dg:DataGridColumn>
+
+                <dg:DataGridColumn Title="Ppeak" PropertyName="Ppeak" Width="1*">
+                    <dg:DataGridColumn.FormattedTitle>
+                        <FormattedString>
+                            <Span Text="Ppeak" FontSize="{Binding FontSize}" FontAttributes="Bold"/>
+                        </FormattedString>
+                    </dg:DataGridColumn.FormattedTitle>
+
+                    <dg:DataGridColumn.CellTemplate>
+                    <DataTemplate>
+                        <ContentView HorizontalOptions="Fill" VerticalOptions="Fill"
+						 BackgroundColor="{Binding Converter={StaticResource Converters}}">
+                                <Label Text="{Binding}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="17"/>
+                        </ContentView>
+                    </DataTemplate>
+                </dg:DataGridColumn.CellTemplate> 
+                </dg:DataGridColumn>
+                <dg:DataGridColumn Title="Vt" PropertyName="Vt" Width="1*">
+                    <dg:DataGridColumn.FormattedTitle>
+                        <FormattedString>
+                            <Span Text="Vt" FontSize="{Binding FontSize}" FontAttributes="Bold"/>
+                        </FormattedString>
+                    </dg:DataGridColumn.FormattedTitle>
+
+                    <dg:DataGridColumn.CellTemplate>
+                    <DataTemplate>
+                        <ContentView HorizontalOptions="Fill" VerticalOptions="Fill"
+						 BackgroundColor="{Binding Converter={StaticResource Converters}}">
+                                <Label Text="{Binding}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="17"/>
+                        </ContentView>
+                    </DataTemplate>
+                </dg:DataGridColumn.CellTemplate>
+                </dg:DataGridColumn>
+                <dg:DataGridColumn Title="SpO2" PropertyName="SpO2" Width="1*">
+                    <dg:DataGridColumn.FormattedTitle>
+                        <FormattedString>
+                            <Span Text="SpO2" FontSize="{Binding FontSize}" FontAttributes="Bold"/>
+                        </FormattedString>
+                    </dg:DataGridColumn.FormattedTitle>
+
+                    <dg:DataGridColumn.CellTemplate>
+                        <DataTemplate>
+                            <ContentView HorizontalOptions="Fill" VerticalOptions="Fill"
+						 BackgroundColor="{Binding Converter={StaticResource Converters}}">
+                                <Label Text="{Binding}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="17"/>
+                            </ContentView>
+                        </DataTemplate>
+                    </dg:DataGridColumn.CellTemplate> 
+                    </dg:DataGridColumn>
+                    <dg:DataGridColumn Title="FiO2" PropertyName="FiO2" Width="1*">
+                    <dg:DataGridColumn.FormattedTitle>
+                        <FormattedString>
+                            <Span Text="FiO2" FontSize="{Binding FontSize}" FontAttributes="Bold"/>
+                        </FormattedString>
+                    </dg:DataGridColumn.FormattedTitle>
+
+                    <dg:DataGridColumn.CellTemplate>
+                        <DataTemplate>
+                            <ContentView HorizontalOptions="Fill" VerticalOptions="Fill"
+						 BackgroundColor="{Binding Converter={StaticResource Converters}}">
+                                <Label Text="{Binding}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="17"/>
+                            </ContentView>
+                        </DataTemplate>
+                    </dg:DataGridColumn.CellTemplate>
+                </dg:DataGridColumn>
+
+                <dg:DataGridColumn Title="PaO2" PropertyName="PaO2" Width="1*">
+                    <dg:DataGridColumn.FormattedTitle>
+                        <FormattedString>
+                            <Span Text="PaO2" FontSize="{Binding FontSize}" FontAttributes="Bold"/>
+                        </FormattedString>
+                    </dg:DataGridColumn.FormattedTitle>
+
+                    <dg:DataGridColumn.CellTemplate>
+                        <DataTemplate>
+                            <ContentView HorizontalOptions="Fill" VerticalOptions="Fill"
+						 BackgroundColor="{Binding Converter={StaticResource Converters}}">
+                                <Label Text="{Binding}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="17"/>
+                            </ContentView>
+                        </DataTemplate>
+                    </dg:DataGridColumn.CellTemplate>
+                </dg:DataGridColumn>
+
+                <dg:DataGridColumn Title="pCO2" PropertyName="pCO2" Width="1*">
+                    <dg:DataGridColumn.FormattedTitle>
+                        <FormattedString>
+                            <Span Text="pCO2" FontSize="{Binding FontSize}" FontAttributes="Bold"/>
+                        </FormattedString>
+                    </dg:DataGridColumn.FormattedTitle>
+
+                    <dg:DataGridColumn.CellTemplate>
+                        <DataTemplate>
+                            <ContentView HorizontalOptions="Fill" VerticalOptions="Fill"
+						 BackgroundColor="{Binding Converter={StaticResource Converters}}">
+                                <Label Text="{Binding}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="17"/>
+                            </ContentView>
+                        </DataTemplate>
+                    </dg:DataGridColumn.CellTemplate> 
+                </dg:DataGridColumn>
+
+                <dg:DataGridColumn Title="pH" PropertyName="pH" Width="1*">
+                    <dg:DataGridColumn.FormattedTitle>
+                        <FormattedString>
+                            <Span Text="pH" FontSize="{Binding FontSize}" FontAttributes="Bold"/>
+                        </FormattedString>
+                    </dg:DataGridColumn.FormattedTitle>
+
+                    <dg:DataGridColumn.CellTemplate>
+                        <DataTemplate>
+                            <ContentView HorizontalOptions="Fill" VerticalOptions="Fill"
+						 BackgroundColor="{Binding Converter={StaticResource Converters}}">
+                                <Label Text="{Binding}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="17"/>
+                            </ContentView>
+                        </DataTemplate>
+                    </dg:DataGridColumn.CellTemplate> 
+                </dg:DataGridColumn>
+
+            </dg:DataGrid.Columns>
+            <!--<dg:DataGrid.RowsBackgroundColorPalette>
+                <dg:PaletteCollection>
+                    <Color>#F2F2F2</Color>
+                    <Color>#FFFFFF</Color>
+                </dg:PaletteCollection>
+            </dg:DataGrid.RowsBackgroundColorPalette>-->
+            <dg:DataGrid.Resources>
+                <ResourceDictionary>
+                    <conv:Converters x:Key="Converters"/>
+                </ResourceDictionary>
+            </dg:DataGrid.Resources>
+
+        </dg:DataGrid>
+    </ContentView>
+</ContentPage>  

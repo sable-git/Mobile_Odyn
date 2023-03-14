@@ -1,0 +1,106 @@
+%-------tryb VC
+%inicjalizacja nastaw respiratora
+%labelEX0 - zawsze startowy wêze³ schematu
+
+START labelEX0
+
+labelEX0: %PARAMETRY WEJŒCIOWE
+input SR % =1 stan roz³u¿nienia miêœni, logical (0/1)
+input OS % =0 pacjent probuje oddychaæ spontanicnie, logical (0/1) 
+input ARDS % =1 Acute respiratory distress syndrome, logical (0/1)
+input Adult % =1  osoba doros³a, logical (0/1)
+input SpO2 % =80 saturacja, %
+input PaO2 % =75 , mmHg, norma  PaCO2 - 34-45 mm Hg; PaO2 - 75-100 mm Hg; SaO2 - 94-100%;
+input H % =1.8 wsrost pacjenta,m
+Vcykl =4 %objêtoœc oddechowa za jeden cykl oddechu, ml/kg, zalecane od 4 do 6
+labelSU10
+
+labelSU10:
+IMC=H^2*22 %idealna masa cia³a, kg 
+Vt=Vcykl*IMC %objêtoœc oddechowa, l, 
+Vtm=IMC*100 %minutowa objêtoœæ oddechowa, l/min
+RR=Vtm/Vt % czêstotliwoœæ oddechu (iloœæ oddechów na minutê)
+
+labelIF1
+
+
+
+
+
+
+labelIF1: %inspiratory flow, l/min, zalecane 40-50
+if SR=1 & OS=0 then labelSU1 
+else 
+ labelIF2
+
+labelSU1: 
+IF=40
+ labelIF3
+
+  
+labelIF2: 
+if OS=1 then labelSU2
+else labelA1
+
+labelA1: %label alarmów i stopów
+ alarm IF=xxx
+ stop
+
+labelSU2:
+IF=60
+ labelIF3
+
+labelIF3: %inspiration pause,s, zalecane wg stosunku wdech/wydech - 1:1 do 1:3 dla doros³ych, 1:2-1.25 dla ARDS
+if Adult=1 and ARDS=0 then labelSU3 
+else  labelIF4
+labelSU3:
+Ip=0.6 
+ labelIF5
+
+labelIF4:
+if ARDS then  labelSU4
+else labelA2
+labelA2: %label alarmów i stopów
+ alarm Ip=xxx
+ stop
+
+labelSU4:
+Ip=0.3 
+ labelIF5
+ 
+
+labelIF5:
+if SpO2<88 then labelSU5
+else  labelIF6
+labelSU5:
+FiO2=50% ,%
+PEEP=6% , cmH2O 
+ labelIF7
+
+labelIF6:
+if SpO2>95 then labelSU6
+else labelA3
+labelA3: %label alarmów i stopów
+ alarm FiO2=xxx 
+ alarm PEEP=xxx
+ 
+ stop
+ 
+labelSU6:
+FiO2=30%, % 
+PEEP=5% , cmH2O
+ labelIF7
+
+labelIF7:  
+if PaO2 / FiO2 <150 then labelSU7 %,mmHg
+else  labelSU8
+
+labelSU7: 
+proneposition=1 %logical (0/1)
+ labelSU8
+
+labelSU8:
+Ts=2 %trigger strumienia 1.5-2l/min
+stop
+
+

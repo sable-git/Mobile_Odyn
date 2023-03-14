@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GUI_mobile4.PatientTools">
+    <ListView x:Name="pList" ItemsSource="{Binding patients}" SelectedItem="{Binding SelectedRecord}" IsVisible="True">
+        <ListView.Header>
+            <StackLayout Orientation="Horizontal">
+                <Button x:Name="Add" Text="Nowy pacjent" Clicked="Button_Clicked" FontSize="{Binding FontSize}"></Button>
+                <Button x:Name="Delete" Text="Usuń" Clicked="Delete_Clicked" FontSize="{Binding FontSize}"></Button>
+                <Button x:Name="Reset" Text="Zresetuj" Clicked="Reset_Clicked" FontSize="{Binding FontSize}"></Button>
+            </StackLayout>
+        </ListView.Header>
+        <ListView.ItemTemplate >
+            <DataTemplate>
+<!--                <TextCell Text="{Binding info.Id}"></TextCell> -->
+                <ViewCell>
+                    <StackLayout>
+                        <Label Text="{Binding Info.Id}"  FontSize="{Binding Info.FontSize} "/> 
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>
